@@ -1,6 +1,7 @@
 package lviv.university.committee.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -8,6 +9,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int id;
 
     @Column(name = "first_name")
@@ -18,7 +20,8 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.ORDINAL)
-    private UserRole role;
+    @ElementCollection(targetClass = UserRole.class,fetch = FetchType.EAGER)
+    private Set<UserRole> role;
 
     public User() {
     }
@@ -63,11 +66,11 @@ public class User {
         this.password = password;
     }
 
-    public UserRole getRole() {
+    public Set<UserRole> getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(Set<UserRole> role) {
         this.role = role;
     }
 }

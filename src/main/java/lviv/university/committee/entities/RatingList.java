@@ -13,11 +13,20 @@ public class RatingList {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
-    private int avgMark;
-    private boolean accept;
+
+    @Column(name = "sum_subjects_grade")
+    private int sumSubjectsGrade;
+
+    @Column(name = "avg_certificate_mark")
+    private int avgCertificateMark;
+
+    @Column(name = "final_mark")
+    private int finalMark;
+
 
     public RatingList() {
     }
@@ -46,19 +55,27 @@ public class RatingList {
         this.faculty = faculty;
     }
 
-    public int getAvgMark() {
-        return avgMark;
+    public int getSumSubjectsGrade() {
+        return sumSubjectsGrade;
     }
 
-    public void setAvgMark(int avgMark) {
-        this.avgMark = avgMark;
+    public void setSumSubjectsGrade(int sumSubjectsGrade) {
+        this.sumSubjectsGrade = sumSubjectsGrade;
     }
 
-    public boolean isAccept() {
-        return accept;
+    public int getAvgCertificateMark() {
+        return avgCertificateMark;
     }
 
-    public void setAccept(boolean accept) {
-        this.accept = accept;
+    public void setAvgCertificateMark(int avgCertificateMark) {
+        this.avgCertificateMark = avgCertificateMark;
+    }
+
+    public int getFinalMark() {
+        return finalMark;
+    }
+
+    public void setFinalMark(int finalMark) {
+        this.finalMark = finalMark;
     }
 }
