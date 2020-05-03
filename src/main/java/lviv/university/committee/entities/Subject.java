@@ -1,6 +1,7 @@
 package lviv.university.committee.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "subjects")
@@ -8,14 +9,14 @@ public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "subject_id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
     @Column(name = "subject_name")
     private String name;
-    private int mark;
+
+    @ManyToMany(mappedBy = "subjects")
+    Set<Faculty> faculties;
 
     public Subject() {
     }
@@ -28,14 +29,6 @@ public class Subject {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getName() {
         return name;
     }
@@ -44,11 +37,11 @@ public class Subject {
         this.name = name;
     }
 
-    public int getMark() {
-        return mark;
+    public Set<Faculty> getFaculties() {
+        return faculties;
     }
 
-    public void setMark(int mark) {
-        this.mark = mark;
+    public void setFaculties(Set<Faculty> faculties) {
+        this.faculties = faculties;
     }
 }

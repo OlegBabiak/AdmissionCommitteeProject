@@ -1,6 +1,7 @@
 package lviv.university.committee.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "faculties")
@@ -8,11 +9,17 @@ public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "faculty_id")
     private int id;
     @Column(name = "faculty_name")
     private String name;
+    @Column(name = "number_Of_Place")
     private int numberOfPlace;
-    private int numberOfSocialPlace;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "faculty_subject_mapping", joinColumns = @JoinColumn(name = "faculty_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private Set<Subject> subjects;
 
     public Faculty() {
     }
@@ -41,11 +48,11 @@ public class Faculty {
         this.numberOfPlace = numberOfPlace;
     }
 
-    public int getNumberOfSocialPlace() {
-        return numberOfSocialPlace;
+    public Set<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setNumberOfSocialPlace(int numberOfSocialPlace) {
-        this.numberOfSocialPlace = numberOfSocialPlace;
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
     }
 }
