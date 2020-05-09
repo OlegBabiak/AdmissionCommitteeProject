@@ -1,6 +1,6 @@
 package lviv.university.committee.entities;
 
 public enum UserRole {
-    ADMINISTRATOR,
-    ENTRANT
+    ROLE_ENTRANT,
+    ROLE_ADMINISTRATOR;
 }
