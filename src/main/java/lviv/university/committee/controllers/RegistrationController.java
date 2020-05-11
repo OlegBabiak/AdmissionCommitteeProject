@@ -36,7 +36,7 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public String register(Model model,
-                           @ModelAttribute @Validated UserRegistrationRequest userDto,
+                           @ModelAttribute("userDto") @Validated UserRegistrationRequest userDto,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("userDto", userDto);
