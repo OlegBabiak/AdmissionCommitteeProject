@@ -16,9 +16,11 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private String userName;
+    private String username;
     private String email;
     private String password;
+    private boolean isEmailVerified;
+    private String verifyEmailHash;
 
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
@@ -27,10 +29,10 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String userName, String email, Set<UserRole> role) {
+    public User(String firstName, String lastName, String username, String email, Set<UserRole> role) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.role = role;
     }
@@ -59,12 +61,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -81,6 +83,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        isEmailVerified = emailVerified;
+    }
+
+    public String getVerifyEmailHash() {
+        return verifyEmailHash;
+    }
+
+    public void setVerifyEmailHash(String verifyEmailHash) {
+        this.verifyEmailHash = verifyEmailHash;
     }
 
     public Set<UserRole> getRole() {

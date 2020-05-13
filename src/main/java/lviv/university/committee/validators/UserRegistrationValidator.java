@@ -22,8 +22,8 @@ public class UserRegistrationValidator implements Validator {
         if (request.getLastName().isEmpty()){
             errors.rejectValue("lastName","lastNameIsEmpty");
         }
-        if (request.getUserName().isEmpty()){
-            errors.rejectValue("userName", "userNameIsEmpty");
+        if (request.getUsername().isEmpty()){
+            errors.rejectValue("username", "usernameIsEmpty");
         }
         if (request.getEmail().isEmpty()){
             errors.rejectValue("email", "emailIsEmpty");

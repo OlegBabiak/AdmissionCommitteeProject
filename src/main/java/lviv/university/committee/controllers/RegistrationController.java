@@ -2,7 +2,6 @@ package lviv.university.committee.controllers;
 
 import lviv.university.committee.dtos.UserRegistrationRequest;
 import lviv.university.committee.service.UserService;
-import lviv.university.committee.validators.UserRegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,10 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -50,5 +46,11 @@ public class RegistrationController {
     public String getRegisterPage(Model model) {
         model.addAttribute("userDto", new UserRegistrationRequest());
         return "registration";
+    }
+
+    @GetMapping("/confirmEmail")
+    public String confirmEmail(@RequestParam String hash) {
+        userService.confirmEmail(hash);
+        return "redirect:/login";
     }
 }
