@@ -4,7 +4,7 @@ public class UserRegistrationRequest {
 
     private String firstName;
     private String lastName;
-    private String usernameveryfication;
+    private String username;
     private String email;
     private String password;
 
